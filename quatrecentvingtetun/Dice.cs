@@ -4,23 +4,23 @@ namespace quatrecentvingtetun
 {
     public class Dice
     {
-        public Random _rnd = new Random();
-        public int NbFaces;
-        public int Face { get; private set; }
+        Random _rnd = new Random();
+        int _nbFaces;
+        public int Face;
 
         public Dice(int nbFaces = 6)
         {
-            NbFaces = nbFaces;
+            _nbFaces = nbFaces;
         }
 
         public override string ToString()
         {
-            return $"Face courante : {Face}";
+            return Face.ToString();
         }
 
-        public int Lancer()
+        public virtual int Roll()
         {
-            return Face = _rnd.Next(1, NbFaces);
+            return Face = _rnd.Next(1, _nbFaces+1);
         }
     }
 }
