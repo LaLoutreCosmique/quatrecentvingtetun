@@ -11,15 +11,24 @@ namespace quatrecentvingtetun
         readonly int _nbOfDice;
         List<Dice> _diceList = new List<Dice>();
 
-        public Game(int nbOfRound, int nbOfDice)
+        public Game(int nbOfRound = 5, int nbOfDice = 5, int nbOfRiggedDice = 0)
         {
             _nbOfRound = nbOfRound;
-            _nbOfDice = nbOfDice;
+            _nbOfDice = nbOfDice + nbOfRiggedDice;
 
             for (int i = 0; i < nbOfDice; i++)
             {
+                _diceList.Add(new Dice());
+            }
+
+            for (int i = 0; i < nbOfRiggedDice; i++)
+            {
                 _diceList.Add(new RiggedDice());
-                _diceList[i].Roll();
+            }
+
+            foreach (Dice dice in _diceList)
+            {
+                dice.Roll();
             }
         }
 
